@@ -1,0 +1,498 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+	
+	
+</head>
+<body>
+    <div class="mini-class" style="background-color: rgb(199, 92, 5);">
+        <a style="margin-left: 15px; color: rgb(255, 255, 255); font-weight: 700;text-decoration: none;" href="{% url 'main' %}">Квартиры Сочи</a>
+
+        <div class="text-navs">
+            <a href="{% url 'find' %}">
+                Найти
+            </a>
+            /
+            <a href="{% url 'delete' %}" style="margin-right: 15px;">
+                Формы
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class=".col-xl-8 rows_class">
+                {% if uborka %}<h4 class="overflow:hidden;">Убрать сегодня: <small>{% for i in uborka %} {{ i }} {% endfor %}</small></h4>{% else %} <h4>На сегодня нет уборок</h4>{% endif %}
+                {% if uborka_tomorrow %}<h4 class="overflow:hidden;" >Убрать завтра: <small>{% for i in uborka_tomorrow %} {{ i }} {% endfor %}</small></h4>{% else %} <h4>На завтра нет уборок</h4>{% endif %}
+                
+                
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'blue')" id="defaultOpen">Голубенькая</button>
+                    <button class="tablinks" onclick="openCity(event, 'soffa')">Диванчик</button>
+                    <button class="tablinks" onclick="openCity(event, 'voykova')">Войкова</button>
+                    <button class="tablinks" onclick="openCity(event, 'green')">Зелененькая</button>
+                    <button class="tablinks" onclick="openCity(event, 'new')">Новая</button>
+                    <button class="tablinks" onclick="openCity(event, 'mountain')">Горы</button>
+                    <button class="tablinks" onclick="openCity(event, 'natash')">Синяя</button>
+                    
+                </div>
+                  
+
+                
+                <div id="soffa" class="tabcontent">
+                <div class="col-md-8">
+
+                    <div class="month mt-3">
+                        <ul>
+                            <li class="month-title">
+                                <span class="month-name">{{ month }}</span>
+                                <br>
+                                <span class="year"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="weekdays">
+                        <li>Пн</li>
+                        <li>Вт</li>
+                        <li>Ср</li>
+                        <li>Чт</li>
+                        <li>Пн</li>
+                        <li>Сб</li>
+                        <li>Вс</li>
+                    </ul>
+                    <ul class="days">
+                    {% for i in space_days_1 %}
+                        <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                    {% endfor %}
+                    {% for i in range %}
+                        <li class = "{% if i in brons_soffa_bord_0 %}start_border{% endif %} {% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} ">{{ i }}</li>
+                    {% endfor %}
+                    </ul>
+                    
+                    <div class="month mt-4">
+                        <ul>
+                            <li class="month-title">
+                                <span class="month-name">{{ month2 }}</span>
+                                <br>
+                                <span class="year"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="weekdays">
+                        <li>Пн</li>
+                        <li>Вт</li>
+                        <li>Ср</li>
+                        <li>Чт</li>
+                        <li>Пн</li>
+                        <li>Сб</li>
+                        <li>Вс</li>
+                    </ul>
+                    <ul class="days">
+                    {% for i in space_days_2 %}
+                        <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                    {% endfor %}    
+                    {% for i in range2 %}
+                        <li class = "{% if i in brons_soffa_bord_1 %}start_border{% endif %} {% if i in ksusha2_soffa %}colornksusha{% elif i in irina2_soffa %}colornirina{% elif i in nadya2_soffa %}colornadya{% elif i in nasty2_soffa %}colornasty{% endif %} ">{{ i }}</li>
+                    {% endfor %}
+                    </ul>
+    
+                </div>
+                </div>
+
+                <div id="voykova" class="tabcontent">
+                <div class="col-md-8">
+
+                    <div class="month mt-3">
+                        <ul>
+                            <li class="month-title">
+                                <span class="month-name">{{ month }}</span>
+                                <br>
+                                <span class="year"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="weekdays">
+                        <li>Пн</li>
+                        <li>Вт</li>
+                        <li>Ср</li>
+                        <li>Чт</li>
+                        <li>Пн</li>
+                        <li>Сб</li>
+                        <li>Вс</li>
+                    </ul>
+                    <ul class="days">
+                    {% for i in space_days_1 %}
+                        <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                    {% endfor %}
+                    {% for i in range %}
+                        <li class = "{% if i in brons_voykova_bord_0 %}start_border{% endif %} {% if i in ksusha_voykova %}colornksusha{% elif i in irina_voykova %}colornirina{% elif i in nadya_voykova %}colornadya{% elif i in nasty_voykova %}colornasty{% endif %} ">{{ i }}</li>
+                    {% endfor %}
+                    </ul>
+                    
+                    <div class="month mt-4">
+                        <ul>
+                            <li class="month-title">
+                                <span class="month-name">{{ month2 }}</span>
+                                <br>
+                                <span class="year"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="weekdays">
+                        <li>Пн</li>
+                        <li>Вт</li>
+                        <li>Ср</li>
+                        <li>Чт</li>
+                        <li>Пн</li>
+                        <li>Сб</li>
+                        <li>Вс</li>
+                    </ul>
+                    <ul class="days">
+                    {% for i in space_days_2 %}
+                        <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                    {% endfor %}
+                    {% for i in range2 %}
+                        <li class = "{% if i in brons_voykova_bord_1 %}start_border{% endif %} {% if i in ksusha2_voykova %}colornksusha{% elif i in irina2_voykova %}colornirina{% elif i in nadya2_voykova %}colornadya{% elif i in nasty2_voykova %}colornasty{% endif %} ">{{ i }}</li>
+                    {% endfor %}
+                    </ul>
+    
+                </div>
+                </div>
+
+                <div id="green" class="tabcontent">
+                    <div class="col-md-8">
+    
+                        <div class="month mt-3">
+                            <ul>
+                                <li class="month-title">
+                                    <span class="month-name">{{ month }}</span>
+                                    <br>
+                                    <span class="year"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="weekdays">
+                            <li>Пн</li>
+                            <li>Вт</li>
+                            <li>Ср</li>
+                            <li>Чт</li>
+                            <li>Пн</li>
+                            <li>Сб</li>
+                            <li>Вс</li>
+                        </ul>
+                        <ul class="days">
+                        {% for i in space_days_1 %}
+                            <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                        {% endfor %}
+                        {% for i in range %}
+                            <li class = "{% if i in brons_green_bord_0 %}start_border{% endif %} {% if i in ksusha_green %}colornksusha{% elif i in irina_green %}colornirina{% elif i in nadya_green %}colornadya{% elif i in nasty_green %}colornasty{% endif %} ">{{ i }}</li>
+                        {% endfor %}
+                        </ul>
+                        
+                        <div class="month mt-4">
+                            <ul>
+                                <li class="month-title">
+                                    <span class="month-name">{{ month2 }}</span>
+                                    <br>
+                                    <span class="year"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="weekdays">
+                            <li>Пн</li>
+                            <li>Вт</li>
+                            <li>Ср</li>
+                            <li>Чт</li>
+                            <li>Пн</li>
+                            <li>Сб</li>
+                            <li>Вс</li>
+                        </ul>
+                        <ul class="days">
+                        {% for i in space_days_2 %}
+                            <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                        {% endfor %}
+                        {% for i in range2 %}
+                            <li class = "{% if i in brons_green_bord_1 %}start_border{% endif %} {% if i in ksusha2_green %}colornksusha{% elif i in irina2_green %}colornirina{% elif i in nadya2_green %}colornadya{% elif i in nasty2_green %}colornasty{% endif %} ">{{ i }}</li>
+                        {% endfor %}
+                        </ul>
+        
+                    </div>
+                </div>
+
+                <div id="new" class="tabcontent">
+                    <div class="col-md-8">
+    
+                        <div class="month mt-3">
+                            <ul>
+                                <li class="month-title">
+                                    <span class="month-name">{{ month }}</span>
+                                    <br>
+                                    <span class="year"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="weekdays">
+                            <li>Пн</li>
+                            <li>Вт</li>
+                            <li>Ср</li>
+                            <li>Чт</li>
+                            <li>Пн</li>
+                            <li>Сб</li>
+                            <li>Вс</li>
+                        </ul>
+                        <ul class="days">
+                        {% for i in space_days_1 %}
+                            <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                        {% endfor %}
+                        {% for i in range %}
+                            <li class = "{% if i in brons_new_bord_0 %}start_border{% endif %} {% if i in ksusha_new %}colornksusha{% elif i in irina_new %}colornirina{% elif i in nadya_new %}colornadya{% elif i in nasty_new %}colornasty{% endif %} ">{{ i }}</li>
+                        {% endfor %}
+                        </ul>
+                        
+                        <div class="month mt-4">
+                            <ul>
+                                <li class="month-title">
+                                    <span class="month-name">{{ month2 }}</span>
+                                    <br>
+                                    <span class="year"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="weekdays">
+                            <li>Пн</li>
+                            <li>Вт</li>
+                            <li>Ср</li>
+                            <li>Чт</li>
+                            <li>Пн</li>
+                            <li>Сб</li>
+                            <li>Вс</li>
+                        </ul>
+                        <ul class="days">
+                        {% for i in space_days_2 %}
+                            <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                        {% endfor %}
+                        {% for i in range2 %}
+                            <li class = "{% if i in brons_new_bord_1 %}start_border{% endif %} {% if i in ksusha2_new %}colornksusha{% elif i in irina2_new %}colornirina{% elif i in nadya2_new %}colornadya{% elif i in nasty2_new %}colornasty{% endif %} ">{{ i }}</li>
+                        {% endfor %}
+                        </ul>
+        
+                    </div>
+                </div>
+                  
+                <div id="mountain" class="tabcontent">
+                    <div class="col-md-8">
+    
+                        <div class="month mt-3">
+                            <ul>
+                                <li class="month-title">
+                                    <span class="month-name">{{ month }}</span>
+                                    <br>
+                                    <span class="year"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="weekdays">
+                            <li>Пн</li>
+                            <li>Вт</li>
+                            <li>Ср</li>
+                            <li>Чт</li>
+                            <li>Пн</li>
+                            <li>Сб</li>
+                            <li>Вс</li>
+                        </ul>
+                        <ul class="days">
+                        {% for i in space_days_1 %}
+                            <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                        {% endfor %}
+                        {% for i in range %}
+                            <li class = "{% if i in brons_mountain_bord_1 %}start_border{% endif %} {% if i in ksusha_mountain %}colornksusha{% elif i in irina_mountain %}colornirina{% elif i in nadya_mountain %}colornadya{% elif i in nasty_mountain %}colornasty{% endif %} ">{{ i }}</li>
+                        {% endfor %}
+                        </ul>
+                        
+                        <div class="month mt-4">
+                            <ul>
+                                <li class="month-title">
+                                    <span class="month-name">{{ month2 }}</span>
+                                    <br>
+                                    <span class="year"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="weekdays">
+                            <li>Пн</li>
+                            <li>Вт</li>
+                            <li>Ср</li>
+                            <li>Чт</li>
+                            <li>Пн</li>
+                            <li>Сб</li>
+                            <li>Вс</li>
+                        </ul>
+                        <ul class="days">
+                        {% for i in space_days_2 %}
+                            <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                        {% endfor %}
+                        {% for i in range2 %}
+                            <li class = "{% if i in brons_mountain_bord_1 %}start_border{% endif %} {% if i in ksusha2_mountain %}colornksusha{% elif i in irina2_mountain %}colornirina{% elif i in nadya2_mountain %}colornadya{% elif i in nasty2_mountain %}colornasty{% endif %} ">{{ i }}</li>
+                        {% endfor %}
+                        </ul>
+        
+                    </div>
+                </div>
+
+                <div id="blue" class="tabcontent">
+                    <div class="col-md-8">
+    
+                        <div class="month mt-3">
+                            <ul>
+                                <li class="month-title">
+                                    <span class="month-name">{{ month }}</span>
+                                    <br>
+                                    <span class="year"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="weekdays">
+                            <li>Пн</li>
+                            <li>Вт</li>
+                            <li>Ср</li>
+                            <li>Чт</li>
+                            <li>Пн</li>
+                            <li>Сб</li>
+                            <li>Вс</li>
+                        </ul>
+                        <ul class="days">
+                        {% for i in space_days_1 %}
+                            <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                        {% endfor %}
+                        {% for i in range %}
+                            <li class = "{% if i in brons_blue_bord_0 %}start_border{% endif %} {% if i in ksusha_blue %}colornksusha{% elif i in irina_blue %}colornirina{% elif i in nadya_blue %}colornadya{% elif i in nasty_blue %}colornasty{% endif %} ">{{ i }}</li>
+                        {% endfor %}
+                        </ul>
+                        
+                        <div class="month mt-4">
+                            <ul>
+                                <li class="month-title">
+                                    <span class="month-name">{{ month2 }}</span>
+                                    <br>
+                                    <span class="year"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="weekdays">
+                            <li>Пн</li>
+                            <li>Вт</li>
+                            <li>Ср</li>
+                            <li>Чт</li>
+                            <li>Пн</li>
+                            <li>Сб</li>
+                            <li>Вс</li>
+                        </ul>
+                        <ul class="days">
+                        {% for i in space_days_2 %}
+                            <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                        {% endfor %}
+                        {% for i in range2 %}
+                            <li class = "{% if i in brons_blue_bord_1 %}start_border{% endif %} {% if i in ksusha2_blue %}colornksusha{% elif i in irina2_blue %}colornirina{% elif i in nadya2_blue %}colornadya{% elif i in nasty2_blue %}colornasty{% endif %} ">{{ i }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="natash" class="tabcontent">
+                    <div class="col-md-8">
+    
+                        <div class="month mt-3">
+                            <ul>
+                                <li class="month-title">
+                                    <span class="month-name">{{ month }}</span>
+                                    <br>
+                                    <span class="year"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="weekdays">
+                            <li>Пн</li>
+                            <li>Вт</li>
+                            <li>Ср</li>
+                            <li>Чт</li>
+                            <li>Пн</li>
+                            <li>Сб</li>
+                            <li>Вс</li>
+                        </ul>
+                        <ul class="days">
+                        {% for i in space_days_1 %}
+                            <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                        {% endfor %}
+                        {% for i in range %}
+                            <li class = "{% if i in brons_natash_bord_0 %}start_border{% endif %} {% if i in ksusha_natash %}colornksusha{% elif i in irina_natash %}colornirina{% elif i in nadya_natash %}colornadya{% elif i in nasty_natash %}colornasty{% endif %} ">{{ i }}</li>
+                        {% endfor %}
+                        </ul>
+                        
+                        <div class="month mt-4">
+                            <ul>
+                                <li class="month-title">
+                                    <span class="month-name">{{ month2 }}</span>
+                                    <br>
+                                    <span class="year"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="weekdays">
+                            <li>Пн</li>
+                            <li>Вт</li>
+                            <li>Ср</li>
+                            <li>Чт</li>
+                            <li>Пн</li>
+                            <li>Сб</li>
+                            <li>Вс</li>
+                        </ul>
+                        <ul class="days">
+                        {% for i in space_days_2 %}
+                            <li class = "{% if i in ksusha_soffa %}colornksusha{% elif i in irina_soffa %}colornirina{% elif i in nadya_soffa %}colornadya{% elif i in nasty_soffa %}colornasty{% endif %} "></li>
+                        {% endfor %}
+                        {% for i in range2 %}
+                            <li class = "{% if i in brons_natash_bord_1 %}start_border{% endif %} {% if i in ksusha2_natash %}colornksusha{% elif i in irina2_natash %}colornirina{% elif i in nadya2_natash %}colornadya{% elif i in nasty2_natash %}colornasty{% endif %} ">{{ i }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+       
+
+
+<script>
+
+    function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+    }
+    
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+	
+	
+</head>
+<body>
+    <div class="mini-class" style="background-color: rgb(199, 92, 5);">
+        <a style="margin-left: 15px; color: rgb(255, 255, 255); font-weight: 700;text-decoration: none;" href="{% url 'main' %}">Квартиры Сочи</a>
+
+        <div class="text-navs">
+            <a href="{% url 'find' %}">
+                Найти
+            </a>
+            /
+            <a href="{% url 'delete' %}" style="margin-right: 15px;">
+                Формы
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="delete_form_brons">
+            <form method="GET" style="display: flex;align-items: center;">
+                <div class="form-inner">
+                    <label for="room" style="margin:10px 0;">Выбор квартиры</label>
+                    <div class="select_styles" id="room">{{ form.room }}</div>
+                    <label for="person" style="margin:10px 0;">Номер месяца</label>
+                    <div class="input_styles" id="room">{{ form.month }}</div>
+                </div>
+                {% csrf_token %}
+                <button class="btn btn-primary" style="margin-top: 10px; height: 50px;margin-left: 50px;" type="submit">Найти</button>
+            </form>
+        </div>
+        <div >
+            {% if True %}
+            <div class="delete_form_find" >
+                <div>
+
+                    <div class="month mt-3" >
+                        <ul>
+                            <li class="month-title">
+                                <span class="month-name">{{ month }}</span>
+                                <br>
+                                <span class="year"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="weekdays">
+                        <li>Пн</li>
+                        <li>Вт</li>
+                        <li>Ср</li>
+                        <li>Чт</li>
+                        <li>Пн</li>
+                        <li>Сб</li>
+                        <li>Вс</li>
+                    </ul>
+                    <ul class="days">
+                    {% for i in space_days %}
+                        <li></li>
+                    {% endfor %}
+                    {% for i in range %}
+                        <li class = "{% if i in ksusha %}colornksusha{% elif i in irina %}colornirina{% elif i in nadya %}colornadya{% elif i in nasty %}colornasty{% endif %} ">{{ i }}</li>
+                    {% endfor %}
+                    </ul>
+
+                </div>
+
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+</body>
+</html>
