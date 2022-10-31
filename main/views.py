@@ -10,7 +10,6 @@ from calendar import mdays
 
 def funt_if(i,arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8,next_month2):
     i = i.split(".")
-    print((date.today()+timedelta(mdays[date.today().month])).strftime("%m"))
     if i[1] == date.today().strftime("%m"):
         if i[2] == 'Ксюша':
             arr1.append(int(i[0]))
@@ -113,11 +112,10 @@ def maintest(request):
     d2 = today.strftime("%B")
     next_month_of_today = today + timedelta(mdays[today.month])
     next_month2 = next_month_of_today.strftime("%B")
-    if int(today.strftime("%d")) == int(month[str(next_month2)]):
+    if int(today.strftime("%d")) == int(month[str(d2)]):
         next_month_of_today -= timedelta(days=1)
         next_month2 = next_month_of_today.strftime("%B")
 
-        
 
     # начало отсчета с нужного дня недели
     space_days_1 = today - timedelta(days=int(str(today.strftime("%d")))-1)
