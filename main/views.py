@@ -8,8 +8,9 @@ from calendar import mdays
 
 
 
-def funt_if(i,arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8):
+def funt_if(i,arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8,next_month2):
     i = i.split(".")
+    print((date.today()+timedelta(mdays[date.today().month])).strftime("%m"))
     if i[1] == date.today().strftime("%m"):
         if i[2] == 'Ксюша':
             arr1.append(int(i[0]))
@@ -22,8 +23,7 @@ def funt_if(i,arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8):
 
         elif i[2] == 'Ирина':
             arr4.append(int(i[0]))
-    elif i[1] == (date.today()+\
-                        timedelta(mdays[date.today().month])).strftime("%m"):
+    elif i[1] == next_month2.strftime("%m"):
         if i[2] == 'Ксюша':
             arr5.append(int(i[0]))
 
@@ -117,6 +117,8 @@ def maintest(request):
         next_month_of_today -= timedelta(days=1)
         next_month2 = next_month_of_today.strftime("%B")
 
+        
+
     # начало отсчета с нужного дня недели
     space_days_1 = today - timedelta(days=int(str(today.strftime("%d")))-1)
     space_days_1 = int(space_days_1.strftime("%w"))
@@ -204,31 +206,31 @@ def maintest(request):
     # заполнение массивов для шаблонов
     for i in arr_blue_1:
         funt_if(i,ksusha[0],nasty[0],nadya[0],irina[0],
-        ksusha2[0],nasty2[0],nadya2[0],irina2[0])
+        ksusha2[0],nasty2[0],nadya2[0],irina2[0],next_month_of_today)
 
     for i in arr_blue_2:
         funt_if(i,ksusha[1],nasty[1],nadya[1],irina[1],
-        ksusha2[1],nasty2[1],nadya2[1],irina2[1])
+        ksusha2[1],nasty2[1],nadya2[1],irina2[1],next_month_of_today)
 
     for i in arr_blue_3:
         funt_if(i,ksusha[2],nasty[2],nadya[2],irina[2],
-        ksusha2[2],nasty2[2],nadya2[2],irina2[2])
+        ksusha2[2],nasty2[2],nadya2[2],irina2[2],next_month_of_today)
 
     for i in arr_blue_4:
         funt_if(i,ksusha[3],nasty[3],nadya[3],irina[3],
-        ksusha2[3],nasty2[3],nadya2[3],irina2[3])
+        ksusha2[3],nasty2[3],nadya2[3],irina2[3],next_month_of_today)
 
     for i in arr_blue_5:
         funt_if(i,ksusha[4],nasty[4],nadya[4],irina[4],
-        ksusha2[4],nasty2[4],nadya2[4],irina2[4])
+        ksusha2[4],nasty2[4],nadya2[4],irina2[4],next_month_of_today)
 
     for i in arr_blue_6:
         funt_if(i,ksusha[5],nasty[5],nadya[5],irina[5],
-        ksusha2[5],nasty2[5],nadya2[5],irina2[5])
+        ksusha2[5],nasty2[5],nadya2[5],irina2[5],next_month_of_today)
     
     for i in arr_blue_7:
         funt_if(i,ksusha[6],nasty[6],nadya[6],irina[6],
-        ksusha2[6],nasty2[6],nadya2[6],irina2[6])
+        ksusha2[6],nasty2[6],nadya2[6],irina2[6],next_month_of_today)
 
     okonch = ['soffa','blue','green','new','mountain','voykova','natash']
     
